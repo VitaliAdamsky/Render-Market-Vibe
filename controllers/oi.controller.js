@@ -8,7 +8,7 @@ const {
   initializeOpenInterestStore,
 } = require("../app/initialize-oi-store.js");
 
-async function getOpenInterestController(req, res, next) {
+async function getOpenInterestDataController(req, res, next) {
   try {
     const { timeframe } = validateRequestParams(req.query);
 
@@ -41,6 +41,6 @@ async function refreshOpenInterestStoreController(req, res, next) {
 }
 
 module.exports = {
-  getOpenInterestController,
+  getOpenInterestDataController,
   refreshOpenInterestStoreController,
 };
