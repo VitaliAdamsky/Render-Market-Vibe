@@ -9,3 +9,7 @@ async function sendSelfPong(_req, res, next) {
     return next(err);
   }
 }
+
+module.exports = {
+  sendSelfPong,
+};
