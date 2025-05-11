@@ -1,5 +1,6 @@
-const { interpolateColor } = require("./interpolate-color.js");
+const chroma = require("chroma-js");
 
+// Дивергирующая шкала: красный (-) → белый (0) → зеленый (+)
 function getColorFromChangeValue(
   value,
   min,
@@ -9,12 +10,11 @@ function getColorFromChangeValue(
   positiveColor = "#4dff4d"
 ) {
   const absMax = Math.max(Math.abs(min), Math.abs(max));
-  const clamped = Math.max(-absMax, Math.min(absMax, value));
-  const normalized = (clamped + absMax) / (2 * absMax); // 0 to 1
-
-  return clamped < 0
-    ? interpolateColor(negativeColor, neutralColor, normalized * 2)
-    : interpolateColor(neutralColor, positiveColor, (normalized - 0.5) * 2);
+  return chroma
+    .scale([negativeColor, neutralColor, positiveColor])
+    .domain([-absMax, 0, absMax])
+    .mode("lab")(value)
+    .hex();
 }
 
 module.exports = { getColorFromChangeValue };

@@ -20,6 +20,7 @@ async function initializeOpenInterestStore(limit = DEFAULT_LIMIT) {
       console.log(`✅ OI cache ${timeframe} → initialized...`);
     } catch (err) {
       console.error(`❌ Failed to initialize OI cache for ${timeframe}:`, err);
+      throw err;
     }
   }
 }

@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const coinsRouter = require("../routers/coins.router.js");
 const oiRouter = require("../routers/oi.router.js");
+const generalRouter = require("../routers/general.js");
 const ServantsConfigOperator = require("../functions/global/servants/servants-config.js");
 
 async function initializeApp() {
@@ -18,6 +19,7 @@ async function initializeApp() {
 
   app.use("/api", coinsRouter);
   app.use("/api", oiRouter);
+  app.use("/api", generalRouter);
 
   return app;
 }

@@ -74,6 +74,7 @@ class ServantsConfigOperator {
         mongoDb: secrets.MONGO_DB || "",
         proxyMarketVibe: secrets.PROXY_MARKET_VIBE || "",
         projectName: "Node-Market-Vibe",
+        renderOiServer: secrets.RENDER_OI_SERVER || "",
         delayInMinutesShort: 5,
         delayInMinutesLong: 10,
       };
