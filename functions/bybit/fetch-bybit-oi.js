@@ -1,7 +1,7 @@
-import { getBybitOiInterval } from "./get-bybit-oi-interval.mjs";
-import { bybitOiUrl } from "./bybit-oi-url.mjs";
+const { getBybitOiInterval } = require("./get-bybit-oi-interval.js");
+const { bybitOiUrl } = require("./bybit-oi-url.js");
 
-export const fetchBybitOi = async (coins, timeframe, limit) => {
+async function fetchBybitOi(coins, timeframe, limit) {
   const bybitInterval = getBybitOiInterval(timeframe);
 
   const promises = coins.map(async (coin) => {
@@ -71,4 +71,6 @@ export const fetchBybitOi = async (coins, timeframe, limit) => {
   });
 
   return Promise.all(promises);
-};
+}
+
+module.exports = { fetchBybitOi };

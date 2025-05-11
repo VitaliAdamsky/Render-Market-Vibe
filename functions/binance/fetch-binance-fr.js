@@ -1,6 +1,6 @@
 import { binanceFrUrl } from "./binance-fr-url.mjs";
 
-export const fetchBinanceFr = async (coins, limit) => {
+const fetchBinanceFr = async (coins, limit) => {
   const promises = coins.map(async (coin) => {
     try {
       const headers = new Headers();
@@ -90,3 +90,5 @@ export const fetchBinanceFr = async (coins, limit) => {
 
   return Promise.all(promises);
 };
+
+export { fetchBinanceFr };

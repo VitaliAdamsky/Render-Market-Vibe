@@ -1,4 +1,4 @@
-export const getBybitOiInterval = (timeframe) => {
+function getBybitOiInterval(timeframe) {
   const timeframes = {
     "5m": "5min",
     "15m": "15min",
@@ -16,6 +16,6 @@ export const getBybitOiInterval = (timeframe) => {
   }
 
   return timeframes[timeframe];
-};
+}
 
-//5min,15min,30min,1h,4h,1d
+module.exports = { getBybitOiInterval };

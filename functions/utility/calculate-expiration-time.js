@@ -1,6 +1,6 @@
-import { getIntervalDurationMs } from "./get-interval-duration-ms.mjs";
+const { getIntervalDurationMs } = require("./get-interval-duration-ms.js");
 
-export function calculateExpirationTime(openTime, timeframe) {
+function calculateExpirationTime(openTime, timeframe) {
   if (typeof openTime !== "number" && typeof openTime !== "string") {
     return undefined;
   }
@@ -17,3 +17,5 @@ export function calculateExpirationTime(openTime, timeframe) {
 
   return parsedOpenTime + 2 * intervalMs + 1;
 }
+
+module.exports = { calculateExpirationTime };

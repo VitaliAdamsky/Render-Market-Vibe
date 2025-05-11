@@ -1,6 +1,6 @@
-import { hexToRgb } from "./hex-to-rgb.mjs";
+const { hexToRgb } = require("./hex-to-rgb.js");
 
-export function interpolateColor(color1, color2, factor) {
+function interpolateColor(color1, color2, factor) {
   const c1 = hexToRgb(color1);
   const c2 = hexToRgb(color2);
   const result = c1
@@ -8,3 +8,5 @@ export function interpolateColor(color1, color2, factor) {
     .map((v) => v.toString(16).padStart(2, "0"));
   return `#${result.join("")}`;
 }
+
+module.exports = { interpolateColor };

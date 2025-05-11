@@ -1,4 +1,4 @@
-export const getIntervalDurationMs = (tf) => {
+function getIntervalDurationMs(tf) {
   const timeframes = {
     "1m": 59999,
     "5m": 299999,
@@ -18,4 +18,6 @@ export const getIntervalDurationMs = (tf) => {
   }
 
   return timeframes[tf];
-};
+}
+
+module.exports = { getIntervalDurationMs };

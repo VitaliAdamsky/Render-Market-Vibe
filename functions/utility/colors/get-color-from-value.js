@@ -1,6 +1,6 @@
-import { interpolateColor } from "./interpolate-color.mjs";
+const { interpolateColor } = require("./interpolate-color.js");
 
-export function getColorFromValue(
+function getColorFromValue(
   value,
   startColor = "#004b23",
   endColor = "#00ff00"
@@ -8,3 +8,5 @@ export function getColorFromValue(
   const clamped = Math.max(0, Math.min(1, value)); // Ensure value stays in [0,1]
   return interpolateColor(startColor, endColor, clamped);
 }
+
+module.exports = { getColorFromValue };

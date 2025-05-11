@@ -1,7 +1,11 @@
-import { getColorFromChangeValue } from "../utility/colors/get-color-from-change-value.mjs";
-import { getColorFromValue } from "../utility/colors/get-color-from-value.mjs";
+const {
+  getColorFromChangeValue,
+} = require("../utility/colors/get-color-from-change-value.js");
+const {
+  getColorFromValue,
+} = require("../utility/colors/get-color-from-value.js");
 
-export function normalizeOpenInterestData(marketDataArray) {
+function normalizeOpenInterestData(marketDataArray) {
   return marketDataArray.map((coinData) => {
     const { data } = coinData;
 
@@ -46,3 +50,5 @@ export function normalizeOpenInterestData(marketDataArray) {
     };
   });
 }
+
+module.exports = { normalizeOpenInterestData };

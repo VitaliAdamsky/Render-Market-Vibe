@@ -2,14 +2,12 @@
 const express = require("express");
 const cors = require("cors");
 const coinsRouter = require("../routers/coins.router.js");
+const oiRouter = require("../routers/oi.router.js");
+const ServantsConfigOperator = require("../functions/global/servants/servants-config.js");
 
 async function initializeApp() {
-  const allowedOrigins = [
-    "https://marketvibe.app",
-    "https://www.marketvibe.app",
-    "http://localhost:3000",
-  ];
-  console.log(allowedOrigins);
+  const allowedOrigins = ServantsConfigOperator.getConfig().allowedOrigins;
+
   if (!Array.isArray(allowedOrigins) || allowedOrigins.length === 0) {
     throw new Error("No valid allowed origins found");
   }
@@ -17,9 +15,9 @@ async function initializeApp() {
   const app = express();
   app.use(express.json());
   app.use(cors({ origin: allowedOrigins }));
-  console.log("coinsRouter:", coinsRouter);
-  console.log("typeof coinsRouter:", typeof coinsRouter);
+
   app.use("/api", coinsRouter);
+  app.use("/api", oiRouter);
 
   return app;
 }

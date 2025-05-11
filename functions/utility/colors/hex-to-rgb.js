@@ -1,4 +1,4 @@
-export function hexToRgb(hex) {
+function hexToRgb(hex) {
   const clean = hex.replace("#", "");
   return [
     parseInt(clean.slice(0, 2), 16),
@@ -6,3 +6,5 @@ export function hexToRgb(hex) {
     parseInt(clean.slice(4, 6), 16),
   ];
 }
+
+module.exports = { hexToRgb };

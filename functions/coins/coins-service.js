@@ -1,9 +1,12 @@
 // coinService.js
-const cache = require("./coins-cache");
+
+const coinsCache = require("./coins-cache");
+const ServantsConfigOperator = require("../global/servants/servants-config");
 
 // Function to fetch coins from the database
 async function fetchCoinsFromDb() {
-  const url = process.env.COINS;
+  const config = ServantsConfigOperator.getConfig();
+  const url = config.coinsApi;
 
   if (!url) {
     throw new Error("Missing COINS URL configuration");
@@ -27,12 +30,12 @@ async function initializeCoinsCache() {
 
 // Function to store coins in the cache
 function storeCoinsInCache(coins) {
-  cache.set("coins", coins);
+  coinsCache.set("coins", coins);
 }
 
 // Function to retrieve coins from the cache
 function getCoinsFromCache() {
-  return cache.get("coins");
+  return coinsCache.get("coins");
 }
 
 // Function to reset the coins cache
@@ -42,33 +45,31 @@ function resetCoinsCache() {
 
 function fetchBinanceDominantCoinsFromCache() {
   const coins = getCoinsFromCache();
-  const binancePerpCoins = coins.filter((c) =>
-    c?.exchanges?.includes?.("Binance")
-  );
+  const binanceCoins = coins.filter((c) => c?.exchanges?.includes?.("Binance"));
 
-  const bybitPerpCoins = coins.filter(
+  const bybitCoins = coins.filter(
     (c) =>
       c?.exchanges?.includes?.("Bybit") && !c?.exchanges?.includes?.("Binance")
   );
 
   return {
-    bybitPerpCoins,
-    binancePerpCoins,
+    bybitCoins,
+    binanceCoins,
   };
 }
 
 function fetchBybitDominantCoinsFromCache() {
   const coins = getCoinsFromCache();
-  const bybitPerpCoins = coins.filter((c) => c?.exchanges?.includes?.("Bybit"));
+  const bybitCoins = coins.filter((c) => c?.exchanges?.includes?.("Bybit"));
 
-  const binancePerpCoins = coins.filter(
+  const binanceCoins = coins.filter(
     (c) =>
       c?.exchanges?.includes?.("Binance") && !c?.exchanges?.includes?.("Bybit")
   );
 
   return {
-    bybitPerpCoins,
-    binancePerpCoins,
+    bybitCoins,
+    binanceCoins,
   };
 }
 

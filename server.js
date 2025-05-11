@@ -1,12 +1,26 @@
 // server.js
-
 require("dotenv").config();
 
 const { initializeApp } = require("./app/initialize-app.js");
 
+const {
+  initializeServantsConfig,
+} = require("./app/initialize-servants-config.js");
+
+const { initializeTelegramBots } = require("./app/initialize-telegram-bots.js");
+
+const { initializeCoinsStore } = require("./app/initialize-coins-store.js");
+
+const { initializeOpenInterestStore } = require("./app/initialize-oi-store.js");
+
 async function main() {
   try {
     // 3) build the Express app
+    await initializeServantsConfig();
+
+    await initializeTelegramBots();
+    await initializeCoinsStore();
+    await initializeOpenInterestStore(3);
     const app = await initializeApp();
 
     // 4) start listening

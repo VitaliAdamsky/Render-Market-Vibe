@@ -1,4 +1,4 @@
-export const getBinanceKlineInterval = (timeframe) => {
+function getBinanceKlineInterval(timeframe) {
   const timeframes = {
     "1m": "1m",
     "5m": "5m",
@@ -18,4 +18,6 @@ export const getBinanceKlineInterval = (timeframe) => {
   }
 
   return timeframes[timeframe];
-};
+}
+
+module.exports = { getBinanceKlineInterval };

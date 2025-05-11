@@ -1,7 +1,7 @@
-import { getBinanceKlineInterval } from "./get-binance-kline-interval.mjs";
-import { binanceOiUrl } from "./binance-oi-url.mjs";
+const { getBinanceKlineInterval } = require("./get-binance-kline-interval.js");
+const { binanceOiUrl } = require("./binance-oi-url.js");
 
-export const fetchBinanceOi = async (coins, timeframe, limit) => {
+async function fetchBinanceOi(coins, timeframe, limit) {
   const binanceInterval = getBinanceKlineInterval(timeframe);
 
   const promises = coins.map(async (coin) => {
@@ -87,4 +87,6 @@ export const fetchBinanceOi = async (coins, timeframe, limit) => {
   });
 
   return Promise.all(promises);
-};
+}
+
+module.exports = { fetchBinanceOi };

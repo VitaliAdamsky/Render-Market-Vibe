@@ -1,6 +1,6 @@
-import { interpolateColor } from "./interpolate-color.mjs";
+const { interpolateColor } = require("./interpolate-color.js");
 
-export function getColorFromChangeValue(
+function getColorFromChangeValue(
   value,
   min,
   max,
@@ -16,3 +16,5 @@ export function getColorFromChangeValue(
     ? interpolateColor(negativeColor, neutralColor, normalized * 2)
     : interpolateColor(neutralColor, positiveColor, (normalized - 0.5) * 2);
 }
+
+module.exports = { getColorFromChangeValue };
