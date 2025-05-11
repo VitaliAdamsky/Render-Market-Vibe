@@ -3,6 +3,8 @@ require("dotenv").config();
 
 const { initializeApp } = require("./app/initialize-app.js");
 
+const { scheduleSelfPing } = require("./jobs/self-ping.js");
+
 const {
   initializeServantsConfig,
 } = require("./app/initialize-servants-config.js");
@@ -36,7 +38,7 @@ async function main() {
       schedule4hJob();
       schedule12hJob();
       scheduleDJob();
-      console.log(`Server started on port ${PORT}`);
+      console.log(`✅ Server started on port ${PORT}`);
     });
   } catch (error) {
     console.error("Application initialization failed:", error);

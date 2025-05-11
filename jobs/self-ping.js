@@ -1,9 +1,8 @@
 const schedule = require("node-schedule");
 const ServantsConfig = require("../functions/global/servants/servants-config");
 
-const config = ServantsConfig.getConfig();
-
 function fetchSelfPingData() {
+  const config = ServantsConfig.getConfig();
   fetch(`${config.renderOiServer}` + "/api/healthz")
     .then((response) => {
       if (!response.ok) {
