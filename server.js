@@ -25,7 +25,7 @@ async function main() {
     // 3) build the Express app
     await initializeServantsConfig();
 
-    await initializeTelegramBots();
+    //await initializeTelegramBots();
     await initializeCoinsStore();
     await initializeOpenInterestStore(3);
     const app = await initializeApp();

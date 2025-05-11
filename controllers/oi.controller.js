@@ -15,7 +15,7 @@ async function getOpenInterestDataController(req, res, next) {
     const data = getOICache(timeframe);
 
     // 3) Return coins array as JSON
-    return res.status(200).json({ data });
+    return res.status(200).json(data);
   } catch (err) {
     // 4) On error, reset cache to avoid stale data
     console.error("Error fetching open interest:", err);
