@@ -8,11 +8,11 @@ const DEFAULT_LIMIT = 52;
  * Fetches open interest data and fills the cache for every supported timeframe.
  * @param {number} [limit=DEFAULT_LIMIT]  Number of candles to fetch per timeframe
  */
-async function initializeOpenInterestStore(limit = DEFAULT_LIMIT) {
+async function initializeOpenInterestStore() {
   for (const timeframe of VALID_TIMEFRAMES) {
     try {
       // 1) Fetch fresh OI payload
-      const payload = await fetchOpenInterestData(timeframe, limit);
+      const payload = await fetchOpenInterestData(timeframe, DEFAULT_LIMIT);
 
       // 2) Store in the cache under that timeframe
       setOICache(timeframe, payload);
