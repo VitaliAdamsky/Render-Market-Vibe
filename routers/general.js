@@ -1,8 +1,8 @@
 // routes/coins.router.js
 const express = require("express");
-const { scheduleSelfPing } = require("../jobs/self-ping.js");
+const { sendSelfPong } = require("../controllers/general.controller");
 
 const router = express.Router();
-router.get("/healthz", scheduleSelfPing);
+router.get("/healthz", sendSelfPong);
 
 module.exports = router;

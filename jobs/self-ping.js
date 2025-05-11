@@ -1,7 +1,7 @@
 const schedule = require("node-schedule");
 const ServantsConfig = require("../functions/global/servants/servants-config");
 
-function fetchSelfPingData() {
+function fetchSelfPongData() {
   const config = ServantsConfig.getConfig();
   fetch(`${config.renderOiServer}` + "/api/healthz")
     .then((response) => {
@@ -20,7 +20,7 @@ function fetchSelfPingData() {
 
 function scheduleSelfPing() {
   schedule.scheduleJob("30 0/14 * * * *", async () => {
-    fetchSelfPingData();
+    fetchSelfPongData();
   });
 }
 

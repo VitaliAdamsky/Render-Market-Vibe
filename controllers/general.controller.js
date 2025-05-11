@@ -1,4 +1,4 @@
-async function sendSelfPing(req, res, next) {
+async function sendSelfPong(_req, res, next) {
   try {
     const data = "Pong";
     return res.status(200).json({ data });
