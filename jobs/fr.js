@@ -1,6 +1,6 @@
 // jobs/oi.js
 const { CronJob } = require("cron");
-const { fetchFundingRateData } = require("../functions/fr/fetch-fr-data");
+
 const { UnixToNamedTimeRu } = require("../functions/utility/time-converter");
 const { fetchFundingRateData } = require("../functions/fr/fetch-fr-data");
 const { setFundingRateCache } = require("../functions/fr/fr-cache");
