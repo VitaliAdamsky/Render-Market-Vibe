@@ -1,9 +1,13 @@
 // app/initialize-app.js
 const express = require("express");
 const cors = require("cors");
+
 const coinsRouter = require("../routers/coins.router.js");
 const oiRouter = require("../routers/oi.router.js");
-const generalRouter = require("../routers/general.js");
+const generalRouter = require("../routers/general.router.js");
+const colorsRouter = require("../routers/colors.router.js");
+const frRouter = require("../routers/fr.router.js");
+
 const ServantsConfigOperator = require("../functions/global/servants/servants-config.js");
 
 async function initializeApp() {
@@ -20,6 +24,8 @@ async function initializeApp() {
   app.use("/api", coinsRouter);
   app.use("/api", oiRouter);
   app.use("/api", generalRouter);
+  app.use("/api", colorsRouter);
+  app.use("/api", frRouter);
 
   return app;
 }

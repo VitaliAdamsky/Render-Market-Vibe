@@ -4,8 +4,11 @@ const {
 const {
   getColorFromValue,
 } = require("../utility/colors/get-color-from-value.js");
+const { getColorsCache } = require("../utility/colors/colors-cache.js");
 
 function normalizeOpenInterestData(marketDataArray) {
+  const colors = getColorsCache();
+
   return marketDataArray.map((coinData) => {
     const { data } = coinData;
 
@@ -27,11 +30,17 @@ function normalizeOpenInterestData(marketDataArray) {
 
     const updatedData = data.map((item) => {
       const normalizedOi = (item.openInterest - oiMin) / oiRange;
-      const oiColor = getColorFromValue(normalizedOi);
+      const oiColor = getColorFromValue(
+        normalizedOi,
+        colors.openInterestMin,
+        colors.openInterestMax
+      );
       const oiChangeColor = getColorFromChangeValue(
         item.openInterestChange,
         oiChangeMin,
-        oiChangeMax
+        oiChangeMax,
+        colors.openInterestChangeMin,
+        colors.openInterestChangeMax
       );
 
       return {

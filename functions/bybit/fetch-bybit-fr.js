@@ -1,6 +1,6 @@
-import { bybitFrUrl } from "./bybit-fr-url.mjs";
+const { bybitFrUrl } = require("./bybit-fr-url.js");
 
-export const fetchBybitFr = async (coins, limit) => {
+async function fetchBybitFr(coins, limit) {
   const promises = coins.map(async (coin) => {
     try {
       const url = bybitFrUrl(coin.symbol, limit);
@@ -78,4 +78,6 @@ export const fetchBybitFr = async (coins, limit) => {
   });
 
   return Promise.all(promises);
-};
+}
+
+module.exports = { fetchBybitFr };

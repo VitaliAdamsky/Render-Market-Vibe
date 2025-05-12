@@ -30,10 +30,10 @@ function scheduleJob(cronExpr, timeframe) {
     "Europe/Moscow" // timezone handled here
   );
   job.start();
-  console.log(`⏳ Scheduled ${timeframe} job (${cronExpr}) in Europe/Moscow`);
+  console.log(`⏳ Scheduled OI ${timeframe} job...`);
 }
 
-function scheduleAllJobs() {
+function scheduleAllOiJobs() {
   // Every hour at :00 Moscow time → runs 00:00,01:00,…23:00 UTC+3
   scheduleJob("0 0 * * * *", "1h");
 
@@ -48,5 +48,5 @@ function scheduleAllJobs() {
 }
 
 module.exports = {
-  scheduleAllJobs,
+  scheduleAllOiJobs,
 };

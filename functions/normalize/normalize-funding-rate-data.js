@@ -1,7 +1,13 @@
-import { getColorFromChangeValue } from "../utility/colors/get-color-from-change-value.mjs";
-import { getColorFromValue } from "../utility/colors/get-color-from-value.mjs";
+const {
+  getColorFromChangeValue,
+} = require("../utility/colors/get-color-from-change-value.js");
+const {
+  getColorFromValue,
+} = require("../utility/colors/get-color-from-value.js");
+const { getColorsCache } = require("../utility/colors/colors-cache.js");
+function normalizeFundingRateData(marketDataArray) {
+  const colors = getColorsCache();
 
-export function normalizeFundingRateData(marketDataArray) {
   return marketDataArray.map((coinData) => {
     const data = coinData.data;
 
@@ -23,14 +29,17 @@ export function normalizeFundingRateData(marketDataArray) {
 
       const normalizedFr = frUniform ? 1 : (fundingRate - frMin) / frRange;
 
-      const frColor = getColorFromValue(normalizedFr, "#0000ff", "#ffa500"); // blue → orange
+      const frColor = getColorFromValue(
+        normalizedFr,
+        colors.fundingRateMin,
+        colors.fundingRateMax
+      );
       const frChangeColor = getColorFromChangeValue(
         fundingRateChange,
         frChangeMin,
         frChangeMax,
-        "#ff4d4d",
-        "#ffffff",
-        "#4dff4d"
+        colors.fundingRateChangeMin,
+        colors.fundingRateChangeMax
       );
 
       return {
@@ -49,3 +58,5 @@ export function normalizeFundingRateData(marketDataArray) {
     };
   });
 }
+
+module.exports = { normalizeFundingRateData };
