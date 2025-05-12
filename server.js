@@ -25,6 +25,7 @@ async function main() {
     await initializeOpenInterestStore(3);
     const app = await initializeApp();
 
+    scheduleSelfPing();
     scheduleAllJobs();
 
     const PORT = process.env.PORT || 80;
