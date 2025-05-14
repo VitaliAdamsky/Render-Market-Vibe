@@ -71,7 +71,7 @@ async function fetchBinanceFr(coins, limit) {
           openTime: currentOpenTime,
           closeTime,
           fundingRate: currentRate,
-          fundingRateChange,
+          fundingRateChange: Number(fundingRateChange.toFixed(2)),
         };
       });
 

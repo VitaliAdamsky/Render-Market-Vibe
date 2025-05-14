@@ -60,7 +60,7 @@ async function fetchBybitFr(coins, limit) {
           openTime,
           closeTime,
           fundingRate: currentRate,
-          fundingRateChange,
+          fundingRateChange: Number(fundingRateChange.toFixed(2)),
         };
       });
 
