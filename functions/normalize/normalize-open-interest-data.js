@@ -45,7 +45,7 @@ function normalizeOpenInterestData(marketDataArray) {
 
       return {
         ...item,
-        normalizedOpenInterest: global.Number(normalizedOi.toFixed(2)),
+        normalizedOpenInterest: (normalizedOi.toFixed(2),
 
         colors: {
           ...item.colors,
