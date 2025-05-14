@@ -45,6 +45,7 @@ function normalizeOpenInterestData(marketDataArray) {
 
       return {
         ...item,
+        normalizedOpenInterest: normalizedOi,
         colors: {
           ...item.colors,
           openInterest: oiColor,

@@ -110,6 +110,11 @@ export function normalizeKlineData(marketDataArray) {
 
       return {
         ...item,
+        normalizedClosePrice: normalizedCp,
+        normalizedBuyerRatio: normalizedBr,
+        normalizedQuoteVolume: normalizedQv,
+        normalizedSpotClosePrice: normalizedSp,
+        normalizedVolumeDelta: normalizedVd,
         colors: {
           ...(item.colors || {}),
           closePrice: cpColor,

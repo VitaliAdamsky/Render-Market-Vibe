@@ -13,7 +13,7 @@ function fetchSelfPongData() {
       return response.json();
     })
     .then((data) => {
-      console.log("✅ Self ping sent:", data);
+      console.log("🔆 Self Ping sent:", data);
     })
     .catch((error) => {
       console.error("❌ Error sending self ping:", error);
