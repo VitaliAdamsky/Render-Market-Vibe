@@ -50,7 +50,10 @@ async function fetchBybitOi(coins, timeframe, limit) {
             symbol: coin.symbol,
             openTime: Number(entry.timestamp),
             openInterest: Number(currentValue.toFixed(2)),
-            openInterestChange: Number(openInterestChange.toFixed(2)),
+            openInterestChange:
+              openInterestChange !== null
+                ? Number(openInterestChange.toFixed(2))
+                : null,
           };
         });
 

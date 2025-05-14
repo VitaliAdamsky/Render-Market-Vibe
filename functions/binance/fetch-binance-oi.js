@@ -65,7 +65,10 @@ async function fetchBinanceOi(coins, timeframe, limit) {
           openTime: Number(entry.timestamp),
           symbol: coin.symbol,
           openInterest: Number(currentValue.toFixed(2)),
-          openInterestChange: Number(openInterestChange.toFixed(2)),
+          openInterestChange:
+            openInterestChange !== null
+              ? Number(openInterestChange.toFixed(2))
+              : null,
         };
       });
 
