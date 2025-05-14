@@ -44,7 +44,7 @@ function normalizeFundingRateData(marketDataArray) {
 
       return {
         ...item,
-        normalizedFundingRate: Number(normalizedFr.toFixed)(2),
+        normalizedFundingRate: parseFloat(normalizedFr.toFixed)(2),
         colors: {
           ...(item.colors || {}),
           fundingRate: frColor,
