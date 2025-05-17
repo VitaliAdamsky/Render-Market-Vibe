@@ -83,7 +83,7 @@ async function fetchBinanceFr(coins, limit) {
         exchanges: coin.exchanges,
         imageUrl: coin.imageUrl,
         category: coin.category,
-        data,
+        data: data.slice(1),
       };
     } catch (error) {
       console.error(`Error processing ${coin.symbol}:`, error);

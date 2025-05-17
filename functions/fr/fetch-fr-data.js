@@ -7,19 +7,17 @@ const {
 } = require("../coins/coins-service");
 
 const {
-  calculateExpirationTime,
-} = require("../utility/calculate-expiration-time");
-
-const {
   normalizeFundingRateData,
 } = require("../normalize/normalize-funding-rate-data");
+
+const { fixFrChange } = require("./fix-fr-change");
 
 async function fetchFundingRateData(limit) {
   // 1. Choose the correct cache-fetch function based on timeframe
 
   const { binanceCoins, bybitCoins } = fetchBinanceDominantCoinsFromCache();
 
-  // 2. Concurrently fetch OI data from both exchanges
+  // 2. Concurrently fetch FR data from both exchanges
   const [binanceFrData, bybitFrData] = await Promise.all([
     fetchBinanceFr(binanceCoins.slice(0, 4), limit),
     fetchBybitFr(bybitCoins.slice(0, 4), limit),
@@ -36,13 +34,11 @@ async function fetchFundingRateData(limit) {
 
   const expirationTime = lastCloseTime + (lastCloseTime - lastOpenTime) + 1;
 
-  // 4. Normalize and merge
-  const normalized = normalizeFundingRateData([
-    ...binanceFrData,
-    ...bybitFrData,
-  ]);
+  let data = fixFrChange([...binanceFrData, ...bybitFrData]);
 
-  return { expirationTime, data: normalized };
+  data = normalizeFundingRateData(data);
+
+  return { expirationTime, data };
 }
 
 module.exports = { fetchFundingRateData };

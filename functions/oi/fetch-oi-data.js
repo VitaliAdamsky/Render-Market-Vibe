@@ -24,8 +24,8 @@ async function fetchOpenInterestData(timeframe, limit) {
 
   // 2. Concurrently fetch OI data from both exchanges
   const [binanceOiData, bybitOiData] = await Promise.all([
-    fetchBinanceOi(binanceCoins.slice(0, 4), timeframe, limit),
-    fetchBybitOi(bybitCoins.slice(0, 4), timeframe, limit),
+    fetchBinanceOi(binanceCoins.slice(0, 6), timeframe, limit),
+    fetchBybitOi(bybitCoins.slice(0, 6), timeframe, limit),
   ]);
 
   // 3. Calculate when this data should expire
@@ -34,7 +34,7 @@ async function fetchOpenInterestData(timeframe, limit) {
     bybitOiData[0]?.data?.at(-1)?.openTime;
   const expirationTime = calculateExpirationTime(lastOpenTime, timeframe);
 
-  // 4. Normalize and merge
+  //4. Normalize and merge
   const normalized = normalizeOpenInterestData([
     ...binanceOiData,
     ...bybitOiData,

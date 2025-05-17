@@ -1,5 +1,9 @@
 const { getBinanceKlineInterval } = require("./get-binance-kline-interval.js");
 const { binanceOiUrl } = require("./binance-oi-url.js");
+const { calculateCloseTime } = require("../utility/calculate-close-time.js");
+const {
+  getIntervalDurationMs,
+} = require("../utility/get-interval-duration-ms.js");
 
 async function fetchBinanceOi(coins, timeframe, limit) {
   const binanceInterval = getBinanceKlineInterval(timeframe);
@@ -18,6 +22,7 @@ async function fetchBinanceOi(coins, timeframe, limit) {
       headers.set("Referer", "https://www.binance.com/");
 
       const url = binanceOiUrl(coin.symbol, binanceInterval, limit);
+      const intervalMs = getIntervalDurationMs(timeframe);
       const response = await fetch(url, { headers });
       if (!response.ok) {
         const errorText = await response.text();
@@ -63,6 +68,7 @@ async function fetchBinanceOi(coins, timeframe, limit) {
 
         return {
           openTime: Number(entry.timestamp),
+          closeTime: calculateCloseTime(Number(entry.timestamp), intervalMs),
           symbol: coin.symbol,
           openInterest: Number(currentValue.toFixed(2)),
           openInterestChange:

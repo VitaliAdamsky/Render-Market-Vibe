@@ -2,7 +2,7 @@
 const { setFundingRateCache } = require("../functions/fr/fr-cache.js");
 const { fetchFundingRateData } = require("../functions/fr/fetch-fr-data.js");
 
-const DEFAULT_LIMIT = 52;
+const DEFAULT_LIMIT = 51;
 
 async function initializeFundingRateStore() {
   try {

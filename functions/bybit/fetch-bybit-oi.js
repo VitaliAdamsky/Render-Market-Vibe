@@ -1,8 +1,13 @@
 const { getBybitOiInterval } = require("./get-bybit-oi-interval.js");
 const { bybitOiUrl } = require("./bybit-oi-url.js");
+const { calculateCloseTime } = require("../utility/calculate-close-time.js");
+const {
+  getIntervalDurationMs,
+} = require("../utility/get-interval-duration-ms.js");
 
 async function fetchBybitOi(coins, timeframe, limit) {
   const bybitInterval = getBybitOiInterval(timeframe);
+  const intervalMs = getIntervalDurationMs(timeframe);
 
   const promises = coins.map(async (coin) => {
     try {
@@ -49,6 +54,7 @@ async function fetchBybitOi(coins, timeframe, limit) {
           return {
             symbol: coin.symbol,
             openTime: Number(entry.timestamp),
+            closeTime: calculateCloseTime(Number(entry.timestamp), intervalMs),
             openInterest: Number(currentValue.toFixed(2)),
             openInterestChange:
               openInterestChange !== null
